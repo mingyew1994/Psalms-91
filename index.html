@@ -1,328 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quotes & Scripture — Canva‑style Showcase</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Psalms 91 Quote</title>
   <style>
-    :root {
-      --bg1: #f7f8fc;
-      --bg2: #eef2ff;
-      --card: rgba(255,255,255,0.78);
-      --text: #111827;
-      --muted: #6b7280;
-      --brand: #6d28d9;
-      --brand-2: #14b8a6;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.10);
-      --quote-size: 18px;
-    }
-    [data-theme="dark"]{
-      --bg1: #0f1220;
-      --bg2: #1b1f34;
-      --card: rgba(15, 18, 32, 0.7);
-      --text: #f9fafb;
-      --muted: #a0a7b4;
-      --brand: #a78bfa;
-      --brand-2: #34d399;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    html, body { height: 100%; }
     body {
+      font-family: Arial, sans-serif;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      background-attachment: fixed;
-    }
-    header {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(1.4) blur(10px);
-      background: linear-gradient(135deg, rgba(255,255,255,.45), rgba(255,255,255,.25));
-      border-bottom: 1px solid rgba(255,255,255,.3);
-      padding: 18px clamp(16px, 4vw, 28px);
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
-    [data-theme="dark"] header { background: linear-gradient(135deg, rgba(17,24,39,.55), rgba(17,24,39,.35)); border-color: rgba(255,255,255,.08); }
-
-    .brand { display:flex; align-items:center; gap:14px; }
-    .logo {
-      width: 40px; height: 40px; border-radius: 12px;
-      background: conic-gradient(from 120deg, var(--brand), var(--brand-2));
-      box-shadow: var(--shadow);
-    }
-    .title { font-family: "Playfair Display", serif; font-weight: 700; letter-spacing: .2px; }
-    .subtitle { color: var(--muted); font-size: 12px; margin-top: 2px; }
-
-    .toolbar { display:flex; align-items:center; gap: 10px; flex-wrap: wrap; }
-    .btn {
-      appearance: none; border: none; cursor: pointer; font-weight: 600; letter-spacing: .2px;
-      padding: 10px 14px; border-radius: 999px; background: var(--text); color: #fff; box-shadow: var(--shadow);
-      transition: transform .06s ease, box-shadow .2s ease, opacity .2s ease;
-    }
-    .btn.ghost { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,.08); }
-    [data-theme="dark"] .btn.ghost { border-color: rgba(255,255,255,.18); }
-    .btn:hover { transform: translateY(-1px); }
-
-    .panel {
-      padding: 18px clamp(16px, 4vw, 28px);
-      display: grid; grid-template-columns: 1fr; gap: 12px;
-    }
-    .inputs { display: grid; grid-template-columns: 1fr 200px 120px; gap: 10px; }
-    @media (max-width: 900px){ .inputs { grid-template-columns: 1fr; } }
-
-    .search { padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,.08); outline: none; font-size: 15px; background: rgba(255,255,255,.7); }
-    [data-theme="dark"] .search { background: rgba(0,0,0,.2); border-color: rgba(255,255,255,.18); color: var(--text); }
-
-    .range-wrap { display:flex; align-items:center; gap: 10px; color: var(--muted); }
-    .range-wrap input[type="range"] { width: 160px; }
-
-    .grid {
-      padding: 8px clamp(16px, 4vw, 28px) 32px;
-      display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-    .card {
-      background: var(--card); border: 1px solid rgba(255,255,255,.45);
-      border-radius: var(--radius); padding: 20px 18px 18px; position: relative;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px) saturate(1.1);
-      transition: transform .15s ease, box-shadow .2s ease;
-    }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.18); }
-
-    .quote { font-size: var(--quote-size); line-height: 1.55; }
-    .quote::before { content: "“"; font-family: "Playfair Display", serif; font-size: calc(var(--quote-size) + 10px); margin-right: 4px; opacity: .6; }
-    .quote::after { content: "”"; font-family: "Playfair Display", serif; font-size: calc(var(--quote-size) + 10px); margin-left: 2px; opacity: .6; }
-
-    .author { margin-top: 12px; font-weight: 700; font-size: 14px; color: var(--muted); }
-
-    .chip {
-      position: absolute; top: 10px; right: 10px; font-size: 12px; padding: 6px 10px; border-radius: 999px;
-      background: linear-gradient(135deg, rgba(109,40,217,.9), rgba(20,184,166,.9)); color: #fff; box-shadow: var(--shadow);
+      padding: 20px;
     }
 
-    .card-actions { position: absolute; bottom: 10px; right: 10px; display: flex; gap: 8px; }
-    .icon-btn { border: 0; background: rgba(255,255,255,.9); padding: 8px; border-radius: 10px; cursor: pointer; box-shadow: var(--shadow); }
-    [data-theme="dark"] .icon-btn { background: rgba(0,0,0,.35); color: #fff; }
+    .box {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
 
-    details.importer { margin: 12px clamp(16px, 4vw, 28px) 38px; }
-    details.importer summary { cursor: pointer; color: var(--muted); font-weight: 600; }
-    textarea#jsonTextarea { width: 100%; min-height: 160px; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,.08); margin-top: 10px; background: rgba(255,255,255,.7); }
-    [data-theme="dark"] textarea#jsonTextarea { background: rgba(0,0,0,.2); color: var(--text); border-color: rgba(255,255,255,.18); }
+    h2 {
+      color: #1e40af;
+      margin-bottom: 20px;
+    }
 
-    footer { color: var(--muted); text-align: center; padding: 30px 16px 60px; }
-    .hidden { display: none !important; }
+    p {
+      font-size: 1.3em;
+      color: #1f2937;
+      white-space: pre-wrap;
+    }
+
+    .ref {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #6b7280;
+    }
+
+    .error {
+      color: #b91c1c;
+      font-size: 1em;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <div>
-        <div class="title">Quotes & Scripture</div>
-        <div class="subtitle">Drop in any JSON array of { quote, author }</div>
-      </div>
-    </div>
-    <div class="toolbar">
-      <button id="btnShuffle" class="btn" title="Shuffle quotes">Shuffle</button>
-      <button id="btnTheme" class="btn ghost" title="Toggle theme">Toggle theme</button>
-      <button id="btnDownload" class="btn ghost" title="Download current JSON">Download JSON</button>
-    </div>
-  </header>
-
-  <section class="panel">
-    <div class="inputs">
-      <input id="search" class="search" type="search" placeholder="Search quote or author…" aria-label="Search" />
-      <label class="range-wrap" for="fontSize">
-        <span>Font size</span>
-        <input id="fontSize" type="range" min="14" max="28" value="18" />
-      </label>
-      <label class="btn" for="fileInput" style="display:flex; align-items:center; justify-content:center;">Import JSON<input id="fileInput" type="file" accept="application/json,.json" class="hidden" /></label>
-    </div>
-  </section>
-
-  <main id="grid" class="grid" aria-live="polite"></main>
-
-  <details class="importer">
-    <summary>Or paste JSON here (array of objects with <code>quote</code> and <code>author</code>)</summary>
-    <textarea id="jsonTextarea" spellcheck="false"></textarea>
-    <div style="display:flex; gap:10px; margin-top:10px;">
-      <button id="btnLoadTextarea" class="btn">Load from box</button>
-      <button id="btnPretty" class="btn ghost">Prettify</button>
-    </div>
-  </details>
-
-  <footer>
-    Built with ❤️ — Canva‑style cards, responsive grid, search, shuffle, import/export.
-  </footer>
+  <div class="box">
+    <h2>Today's Psalms 91 Quote</h2>
+    <p id="quote">Loading...</p>
+    <div class="ref" id="author"></div>
+    <div class="error" id="error"></div>
+  </div>
 
   <script>
-    // ===== Default dataset (your provided JSON) =====
-    const DEFAULT_DATA = [
-      {"quote":"The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty.","author":"Winston Churchill"},
-      {"quote":"Don’t let yesterday take up too much of today.","author":"Will Rogers"},
-      {"quote":"You learn more from failure than from success. Don’t let it stop you. Failure builds character.","author":"Unknown"},
-      {"quote":"If you are working on something that you really care about, you don’t have to be pushed. The vision pulls you.","author":"Steve Jobs"},
-      {"quote":"Experience is a hard teacher because she gives the test first, the lesson afterward.","author":"Vernon Sanders Law"},
-      {"quote":"To know how much there is to know is the beginning of learning to live.","author":"Dorothy West"},
-      {"quote":"Goal setting is the secret to a compelling future.","author":"Tony Robbins"},
-      {"quote":"We must be willing to get rid of the life we’ve planned, so as to have the life that is waiting for us.","author":"Joseph Campbell"},
-      {"quote":"Nothing is impossible, the word itself says ‘I’m possible.’","author":"Audrey Hepburn"},
-      {"quote":"I can’t tell you how many times I’ve been given a no, only to find that a better, brighter, bigger yes was right around the corner.","author":"Arlan Hamilton"},
-      {"quote":"We need to accept that we won’t always make the right decisions, that we’ll screw up royally sometimes—understanding that failure is not the opposite of success, it’s part of success.","author":"Ariana Huffington"},
-      {"quote":"When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.","author":"Henry Ford"},
-      {"quote":"You cannot always control what goes on outside. But you can always control what goes on inside.","author":"Wayne Dyer"},
-      {"quote":"We are what we repeatedly do. Excellence, then, is not an act, but a habit.","author":"Aristotle"},
-      {"quote":"Start where you are. Use what you have. Do what you can.","author":"Arthur Ashe"},
-      {"quote":"Hustle beats talent when talent doesn’t hustle.","author":"Ross Simmonds"},
-      {"quote":"If you’re going through hell, keep going.","author":"Unknown"},
-      {"quote":"All our dreams can come true if we have the courage to pursue them.","author":"Walt Disney"},
-      {"quote":"I have not failed. I’ve just found 10,000 ways that won’t work.","author":"Thomas Edison"},
-      {"quote":"Never let success get to your head, and never let failure get to your heart.","author":"Drake"},
-      {"quote":"The battles that count aren’t the ones for gold medals. The struggles within yourself—the invisible, inevitable battles inside all of us—that’s where it’s at.","author":"Jesse Owens"},
-      {"quote":"If there is no struggle, there is no progress.","author":"Frederick Douglass"},
-      {"quote":"It is a rough road that leads to the heights of greatness.","author":"Lucius Annaeus Seneca"},
-      {"quote":"For the great doesn’t happen through impulse alone, and is a succession of little things that are brought together.","author":"Vincent Van Gogh"},
-      {"quote":"In life, sometimes you win, sometimes you learn.","author":"Unknown"},
-      {"quote":"Success is not final; failure is not fatal: It is the courage to continue that counts.","author":"Winston Churchill"},
-      {"quote":"Tough times don’t last, tough people do.","author":"Unknown"},
-      {"quote":"Let all that you do be done in love.","author":"Unknown"},
-      {"quote":"Always remember you are braver than you believe, stronger than you seem, smarter than you think and loved more than you know.","author":"A.A. Milne"},
-      {"quote":"Be gentle with yourself. You are doing your best, and that’s all that matters.","author":"Unknown"},
-      {"quote":"You are enough, just as you are.","author":"Unknown"},
-      {"quote":"Difficult roads always lead to beautiful destinations.","author":"Zig Ziglar"},
-      {"quote":"In the middle of every difficulty lies opportunity.","author":"Albert Einstein"},
-      {"quote":"Hard times are sometimes blessings in disguise. We do have to suffer but in the end it makes us strong, better and wise.","author":"Anurag Prakash Ray"}
-    ];
+    async function loadQuote() {
+      const quoteEl = document.getElementById("quote");
+      const authorEl = document.getElementById("author");
+      const errEl = document.getElementById("error");
 
-    // ===== Helpers =====
-    const $ = (sel, el = document) => el.querySelector(sel);
-    const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
-    const grid = $('#grid');
-    const search = $('#search');
-    const fileInput = $('#fileInput');
-    const fontSize = $('#fontSize');
-    const btnShuffle = $('#btnShuffle');
-    const btnTheme = $('#btnTheme');
-    const btnDownload = $('#btnDownload');
-    const jsonTextarea = $('#jsonTextarea');
-    const btnLoadTextarea = $('#btnLoadTextarea');
-    const btnPretty = $('#btnPretty');
+      try {
+        // Load from the new quotes.json file (same structure, new content)
+        const res = await fetch("quotes.json");
+        if (!res.ok) throw new Error("File not found");
+        
+        const quotes = await res.json();
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const q = quotes[randomIndex];
 
-    const state = {
-      theme: localStorage.getItem('theme') || 'light',
-      data: [],
-      filtered: [],
-      query: ''
-    };
-
-    function setTheme(mode){
-      state.theme = mode; document.body.setAttribute('data-theme', mode);
-      localStorage.setItem('theme', mode);
-    }
-
-    function toggleTheme(){ setTheme(state.theme === 'dark' ? 'light' : 'dark'); }
-
-    function escapeHtml(str){
-      return String(str ?? '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[s]));
-    }
-
-    function cardTemplate(item, idx){
-      const isScripture = /psalm|proverbs|john|matthew|mark|luke|acts|romans|corinthians|galatians|ephesians|philippians|colossians|peter|james|hebrews|isaiah|genesis|exodus|leviticus|numbers|deuteronomy|joshu(a)?|judges|ruth|samuel|kings|chronicles|ezra|nehemiah|esther|job|ecclesiastes|song|jeremiah|lamentations|ezekiel|daniel|hosea|joel|amos|obadiah|jonah|micah|nahum|habakkuk|zephaniah|haggai|zechariah|malachi/i.test(item.author || '');
-      return `
-        <article class="card" data-idx="${idx}">
-          ${isScripture ? '<span class="chip" aria-label="Scripture">Verse</span>' : ''}
-          <div class="quote">${escapeHtml(item.quote)}</div>
-          <div class="author">— ${escapeHtml(item.author || 'Unknown')}</div>
-          <div class="card-actions">
-            <button class="icon-btn" title="Copy" data-action="copy">📋</button>
-          </div>
-        </article>
-      `;
-    }
-
-    function render(){
-      const q = state.query.trim().toLowerCase();
-      state.filtered = !q ? state.data.slice() : state.data.filter(it =>
-        (it.quote||'').toLowerCase().includes(q) || (it.author||'').toLowerCase().includes(q)
-      );
-      grid.innerHTML = state.filtered.map((it, i) => cardTemplate(it, i)).join('');
-    }
-
-    function shuffle(arr){
-      for(let i = arr.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
+        quoteEl.textContent = q.quote || "";
+        authorEl.textContent = q.author ? "— " + q.author : "";
+      } catch (e) {
+        quoteEl.textContent = "⚠️ Unable to load quotes.";
+        authorEl.textContent = "";
+        errEl.textContent = "Make sure quotes.json is in the same folder as index.html.";
       }
-      return arr;
     }
 
-    function loadData(arr){
-      if(!Array.isArray(arr)) throw new Error('JSON root must be an array');
-      const normalized = arr.map(x => ({ quote: x.quote ?? x.text ?? '', author: x.author ?? x.source ?? 'Unknown' }));
-      state.data = normalized;
-      render();
-      jsonTextarea.value = JSON.stringify(normalized, null, 2);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // ===== Event wiring =====
-    search.addEventListener('input', (e)=>{ state.query = e.target.value; render(); });
-    fontSize.addEventListener('input', (e)=>{ document.documentElement.style.setProperty('--quote-size', e.target.value + 'px'); });
-    btnShuffle.addEventListener('click', ()=>{ shuffle(state.data); render(); });
-    btnTheme.addEventListener('click', toggleTheme);
-
-    btnDownload.addEventListener('click', ()=>{
-      const blob = new Blob([JSON.stringify(state.data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'quotes.json';
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-    });
-
-    grid.addEventListener('click', async (e)=>{
-      const btn = e.target.closest('[data-action="copy"]');
-      if(!btn) return;
-      const idx = Number(btn.closest('.card').getAttribute('data-idx'));
-      const it = state.filtered[idx];
-      try{
-        await navigator.clipboard.writeText(`${it.quote} — ${it.author || 'Unknown'}`);
-        btn.textContent = '✅';
-        setTimeout(()=> btn.textContent = '📋', 900);
-      }catch(err){
-        alert('Copy failed: ' + err.message);
-      }
-    });
-
-    fileInput.addEventListener('change', async (e)=>{
-      const file = e.target.files?.[0]; if(!file) return;
-      try{
-        const text = await file.text();
-        const json = JSON.parse(text);
-        loadData(json);
-      }catch(err){
-        alert('Could not load file: ' + err.message);
-      } finally { fileInput.value = ''; }
-    });
-
-    btnLoadTextarea.addEventListener('click', ()=>{
-      try{ const json = JSON.parse(jsonTextarea.value); loadData(json); }
-      catch(err){ alert('Invalid JSON: ' + err.message); }
-    });
-
-    btnPretty.addEventListener('click', ()=>{
-      try{ const json = JSON.parse(jsonTextarea.value); jsonTextarea.value = JSON.stringify(json, null, 2); }
-      catch(err){ alert('Invalid JSON: ' + err.message); }
-    });
-
-    // ===== Init =====
-    setTheme(state.theme);
-    loadData(DEFAULT_DATA);
+    loadQuote();
   </script>
 </body>
 </html>
-
